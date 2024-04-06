@@ -30,11 +30,35 @@
         <div class="mb-3">
             <label for="type_id" class="form-label">Type</label>
             <select name="type_id" class="form-select @error('type_id') is_invalid @enderror">
+
               <option value="">Choose...</option>
+
               @foreach ($types as $type)
+              
                  <option value="{{ $type->id }}
+
                     {{ $type->id == old('type_id') ? 'selected' : '' }}">{{ $type->name }}</option>
+
               @endforeach
+
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="technology_id" class="form-label">Type</label>
+            <select multiple name="technology_id[]" class="form-select @error('technology_id') is_invalid @enderror">
+
+              <option disabled value="">Select all relevant tags</option>
+
+              @forelse ($technologies as $technology)
+              
+                <option value="{{ $technology->id }}">{{ $technology->name }}</option>
+
+              @empty
+
+                <option value="">No technologies available</option>
+              @endforelse
+
             </select>
         </div>
 

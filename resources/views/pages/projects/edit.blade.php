@@ -58,6 +58,32 @@
             </select>
         </div>
 
+        <div class="mb-3">
+            <label for="technology_id" class="form-label">Type</label>
+            <select multiple name="technology_id[]" class="form-select @error('technology_id') is_invalid @enderror">
+
+              <option disabled value="">Select all relevant tags</option>
+
+              @forelse ($technologies as $technology)
+              
+                @if ($error->any())
+                    <option value="{{ $technology->id }}"
+                        {{ in_array($technology->id, old('technologies', [])) : ? 'selected' : '' }}>{{ $technology->name }}</option>
+                @else
+                    <option value="{{ $technology->id }}"
+                        {{ $project->technologies->contains($technology->id) : ? 'selected' : '' }}>{{ $technology->name }}</option>
+                @endif
+
+                {{-- <option value="{{ $technology->id }}">{{ $technology->name }}</option> --}}
+
+              @empty
+
+                <option value="">No technologies available</option>
+              @endforelse
+
+            </select>
+        </div>
+
         <button class="btn btn-primary " type="submit">Save changes</button>
     </form>
 @endsection
