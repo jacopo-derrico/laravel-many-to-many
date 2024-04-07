@@ -23,13 +23,15 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required',
-                        Rule::unique('projects')->ignore($this->project)
-                     ],
-            'description' => [ 'nullable'],
+            'title' => [
+                'required',
+                Rule::unique('projects')->ignore($this->project)
+            ],
+            'description' => ['nullable'],
             'img' => ['nullable', 'image'],
             'software' => ['nullable'],
-            'type_id' => ['nullable', 'exists:types,id']
+            'type_id' => ['nullable', 'exists:types,id'],
+            'technology_id' => ['exists:technologies,id']
         ];
     }
 }
