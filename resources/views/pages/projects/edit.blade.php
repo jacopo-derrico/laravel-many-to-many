@@ -59,22 +59,29 @@
         </div>
 
         <div class="mb-3">
-            <label for="technology_id" class="form-label">Type</label>
-            <select multiple name="technology_id[]" class="form-select @error('technology_id') is_invalid @enderror">
+            <label for="technologies" class="form-label">Type</label>
+            <select multiple name="technologies[]" class="form-select @error('technology_id') is_invalid @enderror">
 
               <option disabled value="">Select all relevant tags</option>
 
               @forelse ($technologies as $technology)
               
-                @if ($error->any())
+                @if ($errors->any())
                     <option value="{{ $technology->id }}"
-                        {{ in_array($technology->id, old('technologies', [])) : ? 'selected' : '' }}>{{ $technology->name }}</option>
+                        {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>{{ $technology->name }}</option>
                 @else
                     <option value="{{ $technology->id }}"
-                        {{ $project->technologies->contains($technology->id) : ? 'selected' : '' }}>{{ $technology->name }}</option>
+                        {{ $project->technologies->contains($technology->id) ? 'selected' : '' }}>{{ $technology->name }}</option>
                 @endif
 
-                {{-- <option value="{{ $technology->id }}">{{ $technology->name }}</option> --}}
+                {{-- @if ($project->technologies->contains(function ($value, $key) use ($technology) {
+                    return $value->id == $technology->id;
+                }))
+                    <option value="{{ $technology->id }}" selected>{{ $technology->name }}</option>
+                @else
+                    <option value="{{ $technology->id }}">{{ $technology->name }}</option>
+                @endif --}}
+                
 
               @empty
 

@@ -45,8 +45,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="technology_id" class="form-label">Type</label>
-            <select multiple name="technology_id[]" class="form-select @error('technology_id') is_invalid @enderror">
+            <label for="technologies" class="form-label">Type</label>
+            <select multiple name="technologies[]" class="form-select @error('technologies') is_invalid @enderror">
 
               <option disabled value="">Select all relevant tags</option>
 

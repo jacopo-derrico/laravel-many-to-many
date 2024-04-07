@@ -53,6 +53,10 @@ class ProjectController extends Controller
 
         $new_project = Project::create($val_data);
 
+        if ($request->has('technologies')) {
+            $new_project->technology()->attach($request->technologies);
+        }
+
         return redirect()->route('dashboard.projects.index');
     }
 
@@ -97,6 +101,10 @@ class ProjectController extends Controller
         }
 
         $project->update($val_data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($request->technologies);
+        }
 
         return redirect()->route('dashboard.projects.index');
     }
