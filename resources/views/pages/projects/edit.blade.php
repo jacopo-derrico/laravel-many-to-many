@@ -4,6 +4,7 @@
 
     <h1>Edit this Project</h1>
 
+    {{-- @dd($project->technology) --}}
     @if ($errors->any())
         <div class="alert alert-danger ">
             <ul>
@@ -71,7 +72,7 @@
                         {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>{{ $technology->name }}</option>
                 @else
                     <option value="{{ $technology->id }}"
-                        {{ $project->technologies->contains($technology->id) ? 'selected' : '' }}>{{ $technology->name }}</option>
+                        {{ $project->technology->contains($technology->id) ? 'selected' : '' }}>{{ $technology->name }}</option>
                 @endif
 
                 {{-- @if ($project->technologies->contains(function ($value, $key) use ($technology) {

@@ -31,7 +31,7 @@ class StoreProjectRequest extends FormRequest
             'img' => ['nullable', 'image'],
             'software' => ['nullable'],
             'type_id' => ['nullable', 'exists:types,id'],
-            'technology_id' => ['exists:technologies,id']
+            'technologies' => ['exists:technologies,id']
         ];
     }
 }
